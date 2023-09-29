@@ -1,0 +1,30 @@
+{
+    "properties": {
+      "displayName": "Restrict Role Assignment to Service Principal",
+      "policyType": "Custom",
+      "mode": "All",
+      "description": "This policy restricts role assignments to service principals.",
+      "metadata": {
+        "category": "Access Control"
+      },
+      "parameters": {},
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "field": "type",
+              "equals": "Microsoft.Authorization/roleAssignments"
+            },
+            {
+              "field": "principalType",
+              "notEquals": "ServicePrincipal"
+            }
+          ]
+        },
+        "then": {
+          "effect": "deny"
+        }
+      }
+    }
+  }
+  
